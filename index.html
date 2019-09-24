@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<head>
+ <meta http-equiv="content-type" content="text/html; charset=utf-8">
+ <link rel="copyright" href="http://creativecommons.org/licenses/by/3.0/" />
+ <meta name="viewport" content="width=device-width, user-scalable=0"/>
+ <title>message split</title>
+ <link rel="stylesheet" href="./static/msgsplit.css" type="text/css" />
+ <script type="text/javascript" src="./static/msgsplit.js"></script>
+</head>
+<body>
+    <div class="panel">
+    <h1><a href="./">message split</a></h1>
+
+    <div id="setmessage">
+        <label for="message">your message:</label>
+        <br>
+        <input type="text" id="messagetosend" maxlength=254 />
+        <button id="submitcipherserver" onclick="send()">encrypt and submit cipher to server</button>
+    </div>
+
+    <div id="sendmessage">
+        <label for="linktobob">send this link:</label>
+        <br>
+        <input type="text" id="linktobob"/>
+        <p>Do not check this link, the message can only get red one time.</p>
+    </div>
+
+    <div id="getmessage">
+        <p>Save this message for sure! You cant get it a second time.</p>
+        <button onclick="getmessage()" id="getmessagebtn" >get message</button>
+        <input type="text" id="message" />
+    </div>
+    
+    <p><a href="https://github.com/klml/msgsplit">github.com/klml/msgsplit</a></p>
+</body>

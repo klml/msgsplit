@@ -1,0 +1,33 @@
+body > .panel { 
+    font:normal 18px Arial, Helvetica;
+    color:#444;
+    background-color: #EEEEEE ;
+    margin: 0;
+    padding: 10px;
+    outline: none;
+    line-height:1.6;
+}
+input {
+    width: 98%;
+}
+.panel div {
+    padding: 10px;
+    color: #fff;
+}
+
+#sendmessage,
+#getmessage {
+    display:none;
+}
+
+#setmessage {
+    background-color: #363636;
+}
+#sendmessage{
+    background-color: #4d4d4d;
+}
+#getmessage {
+    background-color: #ABABAB;
+}
+
+
