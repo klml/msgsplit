@@ -69,6 +69,7 @@ function send() {
     var encrypted = window.btoa( encrypt( message ) );
     writeRead( 'encrypted', encrypted, make_link );
     document.getElementById('sendmessage').style.display = 'block';
+    document.getElementById('linktobob').focus();
     document.getElementById('setmessage').style.display = 'none';
 }
 
@@ -76,6 +77,7 @@ function getmessage() {
     var search = decodeURIComponent(window.location.search).substring(1)  ;
     writeRead( 'key', search, decrypt );
     document.getElementById('getmessagebtn').style.display = 'none';
+    document.getElementById('message').focus();
 }
 
 // on load with ?cipher#messagekey: show get message button
