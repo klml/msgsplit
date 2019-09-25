@@ -53,6 +53,7 @@ function make_link ( file ) {
 }
 
 function decrypt( encrypted ) {
+    var encrypted = window.atob( encrypted  );
     decryptedmsg = deEnCrypt( encrypted ,  decodeURIComponent(window.location.hash).substring(1) ) ;
     if ( decryptedmsg.length > 0 ) {
         document.getElementById("message").value = decryptedmsg ;
@@ -65,7 +66,7 @@ function decrypt( encrypted ) {
 // user input 
 function send() {
     message     = document.getElementById("messagetosend").value;
-    var encrypted = encrypt( message );
+    var encrypted = window.btoa( encrypt( message ) );
     writeRead( 'encrypted', encrypted, make_link );
     document.getElementById('sendmessage').style.display = 'block';
     document.getElementById('setmessage').style.display = 'none';
