@@ -9,6 +9,8 @@ urls = (
 app = web.application(urls, globals())
 
 class index:
+    # [webpy staticfiles](http://webpy.org/cookbook/staticfiles) demand a directory, index should be on webroot
+    # [ index as static #3 ](https://github.com/klml/msgsplit/issues/3)
     def GET(self):
         with open('index.html', 'r') as file:
             data = file.read()
