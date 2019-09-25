@@ -1,5 +1,7 @@
 import os, web, random
 
+env_prefix = 'msgsplit_'
+
 urls = (
     '/',                'index',
     '/writeread',       'writeread'
@@ -19,15 +21,16 @@ class writeread:
         
         if hasattr(postparam, 'encrypted'):
             key             = str( random.randrange(1000, 1000000000000, 1) )
-            os.environ[ key ] = postparam['encrypted']
+            os.environ[ env_prefix + key ] = postparam['encrypted']
 
             return key
 
         if hasattr(postparam, 'key'):
+            env_prefix_key = env_prefix + postparam['key']
             try:
-                cipher      = os.environ[ postparam['key'] ]
+                cipher      = os.environ[ env_prefix_key ]
                 # overwrite env
-                os.environ[ postparam['key'] ] = ''
+                os.environ[ env_prefix_key ] = ''
             except:
                 cipher      = ''
 
