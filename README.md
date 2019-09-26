@@ -27,11 +27,6 @@ There are better ways for real crypto:
 
 * [openpgp.org](https://www.openpgp.org)
 
-## Todo
-
-* escape special chars (`123456789021234567890` will result `12345678902123567890`)
-
-
 
 ## Similar
 
