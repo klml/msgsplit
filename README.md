@@ -4,8 +4,23 @@ This is _experimental_.
 
 message split allows you to send messages (passwords etc.) to another person without having the message decrypted on the server or in the email.
 
-It will decrypt the message in Alices browser with an [one-time-pad](https://en.wikipedia.org/wiki/One-time_pad).
-Stores the cipher on a server and provides Alice a link with the ciphers filename and the key in the URL-hash.
+Workflow:
+
+* msgsplit encrypts the message in Alices browser into a ciphertext and decryption-key
+* sends the ciphertext to the server 
+  * stores ciphertext on the server in a key-value storage
+  * returns the storage-key to Alice
+* Alices browser creates a hyperlink with the storage-key as URL-query (''?'') and the decryption-key as URL-Fragment (''#'') 
+* Alices sends this link via email or messenger to Bob
+* Bob opens the Link 
+* Bobs browser requests the ciphertext with the storage-key from server
+  * server reads the cipher 
+  * server deletes the cipher 
+  * now Server sends the cipher to Bobs Browser 
+* Bob decrypts the the message with ciphertext and the decryption-key
+
+As encryption method, msgsplit uses [one-time-pad](https://en.wikipedia.org/wiki/One-time_pad), its very secure and very easy to implement.
+
 
 Bob gets the link and and can get the cipher from the server and decrypt the message in his browser, only one time.
 The cipher gets deleted from the server.
