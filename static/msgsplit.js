@@ -49,16 +49,21 @@ function encrypt ( message ) {
 
 // output to html inputs
 function make_link ( file ) {
-    document.getElementById("linktobob").value  =  window.location.href + '?' + file + '#'+ messageKey ;
+    const linktobob = document.getElementById('linktobob');
+    linktobob.value  =  window.location.href + '?' + file + '#'+ messageKey ;
+    linktobob.select();
 }
 
 function decrypt( encrypted ) {
     var encrypted = window.atob( encrypted  );
     decryptedmsg = deEnCrypt( encrypted ,  decodeURIComponent(window.location.hash).substring(1) ) ;
+    const input_message = document.getElementById('message');
+
     if ( decryptedmsg.length > 0 ) {
-        document.getElementById("message").value = decryptedmsg ;
+        input_message.value = decryptedmsg ;
+        message.select();
     } else {
-        document.getElementById("message").value = "no message here";
+        input_message.value = "no message here";
     }
 }
 
@@ -69,7 +74,6 @@ function send() {
     var encrypted = window.btoa( encrypt( message ) );
     writeRead( 'encrypted', encrypted, make_link );
     document.getElementById('sendmessage').style.display = 'block';
-    document.getElementById('linktobob').focus();
     document.getElementById('setmessage').style.display = 'none';
 }
 
@@ -77,7 +81,6 @@ function getmessage() {
     var search = decodeURIComponent(window.location.search).substring(1)  ;
     writeRead( 'key', search, decrypt );
     document.getElementById('getmessagebtn').style.display = 'none';
-    document.getElementById('message').focus();
 }
 
 // on load with ?cipher#messagekey: show get message button
