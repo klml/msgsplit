@@ -26,6 +26,7 @@ function write_read_server( formData, callbackFunction ) {
         function(response) {
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
+                callbackFunction()
                 return;
             }
             response.text().then(function(response_data) {
@@ -46,9 +47,13 @@ function encrypt ( plaintext ) {
 
 // output to html inputs
 function make_linktobob ( storage_key ) {
-    const linktobob     = document.getElementById('linktobob');
-    linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
-    linktobob.select();
+    if (typeof storage_key !== 'undefined') {
+        const linktobob     = document.getElementById('linktobob');
+        linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
+        linktobob.select();
+    } else {
+        linktobob.value     = 'error'
+    }
 }
 
 function decrypt( ciphertext ) {
