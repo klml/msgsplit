@@ -19,25 +19,26 @@ function deEnCrypt ( message, messageKey ) {
 }
 
 
-// TODO use fetch
-
 // send message or messageKey  and get back ciperfile or encrypted message 
-// from https://stackoverflow.com/a/9713078/2248997
+
 function writeRead( key, value, callbackFunction ) {
 
-    var http = new XMLHttpRequest();
-    http.open('POST', 'writeread', true);
+    var formData = new FormData();
+    formData.append( key , value);
 
-    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    http.onreadystatechange = function() {
-        if(http.readyState == 4 && http.status == 200) {
-            if (typeof callbackFunction === "function") {
-                callbackFunction( http.responseText );
+    fetch( 'writeread', { method: "POST", body: formData }  ).then(
+        function(response) {
+            if (response.status !== 200) {
+                console.log('ERROR Status Code: ' + response.status);
+                return;
             }
+            response.text().then(function(data) {
+                callbackFunction(data);
+            });
         }
-    }
-    http.send( key + '=' + value  );
+    ).catch(function(err) {
+        console.log('Fetch Error :-S', err);
+    });
 }
 
 
