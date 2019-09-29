@@ -1,27 +1,26 @@
 // https://github.com/ikcede/JS-One-Time-Pad/blob/master/onetimepad.js
-function generateKey (messageLength) {
-    var key = "";
+function generate_cryptographic_key (messageLength) {
+    var cryptographic_key = "";
     for(var i=0; i < messageLength ;i++) {
-        key = key.concat(String.fromCharCode(Math.floor(Math.random()*26) + 65));
+        cryptographic_key = cryptographic_key.concat(String.fromCharCode(Math.floor(Math.random()*26) + 65));
     }
-    return key;
+    return cryptographic_key;
 }
 
 // called by encrypt and decrypt
-function deEnCrypt ( message, messageKey ) {
+function de_en_crypt ( message, cryptographic_key ) {
     var encrypted = "";
     for(var i=0; i < message.length ; i++) {
         // XOR each character together and build cipher
-        var code = ((messageKey.charCodeAt(i)-65) ^ (message.charCodeAt(i)-65)) + 65;
+        var code = ((cryptographic_key.charCodeAt(i)-65) ^ (message.charCodeAt(i)-65)) + 65;
         encrypted = encrypted.concat(String.fromCharCode(code));
     }
     return encrypted;
 }
 
 
-// send message or messageKey  and get back ciperfile or encrypted message 
-
-function writeRead( key, value, callbackFunction ) {
+// send message or messageKey and get back cipherfile or encrypted message
+function write_read_server( key, value, callbackFunction ) {
 
     var formData = new FormData();
     formData.append( key , value);
@@ -32,8 +31,8 @@ function writeRead( key, value, callbackFunction ) {
                 console.log('ERROR Status Code: ' + response.status);
                 return;
             }
-            response.text().then(function(data) {
-                callbackFunction(data);
+            response.text().then(function(response_data) {
+                callbackFunction(response_data);
             });
         }
     ).catch(function(err) {
@@ -42,24 +41,26 @@ function writeRead( key, value, callbackFunction ) {
 }
 
 
-function encrypt ( message ) {
-    messageKey      = generateKey( message.length );
-    encrypted       = deEnCrypt( message, messageKey );
-    return encrypted ;
+function encrypt ( plaintext ) {
+    cryptographic_key      = generate_cryptographic_key( plaintext.length );
+    ciphertext       = de_en_crypt( plaintext, cryptographic_key );
+    return ciphertext ;
 }
 
 // output to html inputs
-function make_link ( file ) {
+function make_linktobob ( storage_key ) {
     const linktobob = document.getElementById('linktobob');
-    linktobob.value  =  window.location.href + '?' + file + '#'+ messageKey ;
+    linktobob.value  =  window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
     linktobob.select();
 }
 
-function decrypt( encrypted ) {
-    var encrypted = window.atob( encrypted  );
-    decryptedmsg = deEnCrypt( encrypted ,  decodeURIComponent(window.location.hash).substring(1) ) ;
-    const input_message = document.getElementById('message');
+function decrypt( ciphertext ) {
+    var ciphertext_base64 = window.atob( ciphertext  );
+    var cryptkey =  decodeURIComponent(window.location.hash).substring(1) ;
 
+    decryptedmsg = de_en_crypt( ciphertext_base64 , cryptkey ) ;
+
+    const input_message = document.getElementById('message');
     if ( decryptedmsg.length > 0 ) {
         input_message.value = decryptedmsg ;
         message.select();
@@ -70,17 +71,18 @@ function decrypt( encrypted ) {
 
 
 // user input 
-function send() {
-    message     = document.getElementById("messagetosend").value;
-    var encrypted = window.btoa( encrypt( message ) );
-    writeRead( 'encrypted', encrypted, make_link );
+function create_plaintext2ciphertext() {
+    plaintext     = document.getElementById("plaintext").value;
+    var ciphertext  =  encrypt( plaintext ) ;
+    var ciphertext_base64 = window.btoa( ciphertext );
+    write_read_server( 'encrypted', ciphertext_base64, make_linktobob );
     document.getElementById('sendmessage').style.opacity = 1.0;
     document.getElementById('setmessage').style.opacity = 0.8;
 }
 
-function getmessage() {
+function get_ciphertext2plaintext() {
     var search = decodeURIComponent(window.location.search).substring(1)  ;
-    writeRead( 'key', search, decrypt );
+    write_read_server( 'key', search, decrypt );
     document.getElementById('getmessagebtn').disabled = true ;
 }
 

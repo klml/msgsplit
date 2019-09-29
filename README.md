@@ -6,18 +6,18 @@ message split allows you to send messages (passwords etc.) to another person wit
 
 Workflow:
 
-* msgsplit encrypts the message in Alices browser into a ciphertext and decryption-key
-* sends the ciphertext to the server 
-  * stores ciphertext on the server in a key-value storage
-  * returns the storage-key to Alice
-* Alices browser creates a hyperlink with the storage-key as URL-query (''?'') and the decryption-key as URL-Fragment (''#'') 
+* msgsplit encrypts the message in Alices browser into a _ciphertext_ and _cryptographic-key_
+* sends the _ciphertext_ to the server
+  * stores _ciphertext_ on the server in a key-value storage
+  * returns the _storage-key_ to Alice
+* Alices browser creates a hyperlink with the _storage-key_ as URL-query (''?'') and the _cryptographic-key_ as URL-Fragment (''#'')
 * Alices sends this link via email or messenger to Bob
 * Bob opens the Link 
-* Bobs browser requests the ciphertext with the storage-key from server
-  * server reads the cipher 
-  * server deletes the cipher 
-  * now Server sends the cipher to Bobs Browser 
-* Bob decrypts the the message with ciphertext and the decryption-key
+* Bobs browser requests the _ciphertext_ with the _storage-key_ from server
+  * server reads the _ciphertext_
+  * server deletes the _ciphertext_
+  * now Server sends the _ciphertext_ to Bobs Browser
+* Bob decrypts the the message with _ciphertext_ and the _cryptographic-key_
 
 As encryption method, msgsplit uses [one-time-pad](https://en.wikipedia.org/wiki/One-time_pad), its very secure and very easy to implement.
 
