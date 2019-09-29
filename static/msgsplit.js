@@ -47,7 +47,7 @@ function encrypt ( plaintext ) {
 // output to html inputs
 function make_linktobob ( storage_key ) {
     const linktobob     = document.getElementById('linktobob');
-    linktobob.value     =  window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
+    linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
     linktobob.select();
 }
 
