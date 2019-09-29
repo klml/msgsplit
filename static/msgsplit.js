@@ -20,10 +20,7 @@ function de_en_crypt ( message, cryptographic_key ) {
 
 
 // send message or messageKey and get back cipherfile or encrypted message
-function write_read_server( key, value, callbackFunction ) {
-
-    var formData = new FormData();
-    formData.append( key , value);
+function write_read_server( formData, callbackFunction ) {
 
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
         function(response) {
@@ -75,14 +72,19 @@ function create_plaintext2ciphertext() {
     var ciphertext          = encrypt( plaintext ) ;
     var ciphertext_base64   = window.btoa( ciphertext );
 
-    write_read_server( 'encrypted', ciphertext_base64, make_linktobob );
+    var formData = new FormData();
+    formData.append( 'encrypted', ciphertext_base64 );
+
+    write_read_server( formData, make_linktobob );
     document.getElementById('sendmessage').style.opacity = 1.0;
     document.getElementById('setmessage').style.opacity = 0.8;
 }
 
 function get_ciphertext2plaintext() {
     var search = decodeURIComponent(window.location.search).substring(1)  ;
-    write_read_server( 'key', search, decrypt );
+    var formData = new FormData();
+    formData.append( 'key', search );
+    write_read_server( formData , decrypt );
     document.getElementById('getmessagebtn').disabled = true ;
 }
 
