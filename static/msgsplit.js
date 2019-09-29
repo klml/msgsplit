@@ -12,8 +12,8 @@ function de_en_crypt ( message, cryptographic_key ) {
     var encrypted = "";
     for(var i=0; i < message.length ; i++) {
         // XOR each character together and build cipher
-        var code = ((cryptographic_key.charCodeAt(i)-65) ^ (message.charCodeAt(i)-65)) + 65;
-        encrypted = encrypted.concat(String.fromCharCode(code));
+        var code    = ((cryptographic_key.charCodeAt(i)-65) ^ (message.charCodeAt(i)-65)) + 65;
+        encrypted   = encrypted.concat(String.fromCharCode(code));
     }
     return encrypted;
 }
@@ -42,23 +42,22 @@ function write_read_server( key, value, callbackFunction ) {
 
 
 function encrypt ( plaintext ) {
-    cryptographic_key      = generate_cryptographic_key( plaintext.length );
-    ciphertext       = de_en_crypt( plaintext, cryptographic_key );
+    cryptographic_key   = generate_cryptographic_key( plaintext.length );
+    ciphertext          = de_en_crypt( plaintext, cryptographic_key );
     return ciphertext ;
 }
 
 // output to html inputs
 function make_linktobob ( storage_key ) {
-    const linktobob = document.getElementById('linktobob');
-    linktobob.value  =  window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
+    const linktobob     = document.getElementById('linktobob');
+    linktobob.value     =  window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
     linktobob.select();
 }
 
 function decrypt( ciphertext ) {
-    var ciphertext_base64 = window.atob( ciphertext  );
-    var cryptkey =  decodeURIComponent(window.location.hash).substring(1) ;
-
-    decryptedmsg = de_en_crypt( ciphertext_base64 , cryptkey ) ;
+    var ciphertext_base64   = window.atob( ciphertext  );
+    var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
+    decryptedmsg            = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
     const input_message = document.getElementById('message');
     if ( decryptedmsg.length > 0 ) {
@@ -72,9 +71,10 @@ function decrypt( ciphertext ) {
 
 // user input 
 function create_plaintext2ciphertext() {
-    plaintext     = document.getElementById("plaintext").value;
-    var ciphertext  =  encrypt( plaintext ) ;
-    var ciphertext_base64 = window.btoa( ciphertext );
+    plaintext               = document.getElementById("plaintext").value;
+    var ciphertext          = encrypt( plaintext ) ;
+    var ciphertext_base64   = window.btoa( ciphertext );
+
     write_read_server( 'encrypted', ciphertext_base64, make_linktobob );
     document.getElementById('sendmessage').style.opacity = 1.0;
     document.getElementById('setmessage').style.opacity = 0.8;
