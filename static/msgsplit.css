@@ -13,9 +13,12 @@ input {
 .panel div {
     padding: 10px;
     color: #fff;
+    margin-bottom: 10px;
 }
 
-#sendmessage,
+#sendmessage {
+    opacity:0.3
+}
 #getmessage {
     display:none;
 }

@@ -74,20 +74,21 @@ function send() {
     message     = document.getElementById("messagetosend").value;
     var encrypted = window.btoa( encrypt( message ) );
     writeRead( 'encrypted', encrypted, make_link );
-    document.getElementById('sendmessage').style.display = 'block';
-    document.getElementById('setmessage').style.display = 'none';
+    document.getElementById('sendmessage').style.opacity = 1.0;
+    document.getElementById('setmessage').style.opacity = 0.8;
 }
 
 function getmessage() {
     var search = decodeURIComponent(window.location.search).substring(1)  ;
     writeRead( 'key', search, decrypt );
-    document.getElementById('getmessagebtn').style.display = 'none';
+    document.getElementById('getmessagebtn').disabled = true ;
 }
 
 // on load with ?cipher#messagekey: show get message button
 window.onload = function() {
     if ( decodeURIComponent(window.location.search).substring(1).length > 1 ) {
         document.getElementById('setmessage').style.display = 'none';
+        document.getElementById('sendmessage').style.display = 'none';
         document.getElementById('getmessage').style.display = 'block';
     }
 };
