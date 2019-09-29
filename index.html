@@ -14,8 +14,8 @@
     <div id="setmessage">
         <label for="message">your message:</label>
         <br>
-        <input type="text" id="messagetosend" maxlength=254 autofocus/>
-        <button id="submitcipherserver" onclick="send()">encrypt and submit cipher to server</button>
+        <input type="text" id="plaintext" maxlength=254 autofocus/>
+        <button id="submitcipherserver" onclick="create_plaintext2ciphertext()">encrypt and submit cipher to server</button>
     </div>
 
     <div id="sendmessage">
@@ -27,7 +27,7 @@
 
     <div id="getmessage">
         <p>Save this message for sure! You cant get it a second time.</p>
-        <button onclick="getmessage()" id="getmessagebtn" >get message</button>
+        <button onclick="get_ciphertext2plaintext()" id="getmessagebtn" >get message</button>
         <input type="text" id="message" />
     </div>
     
