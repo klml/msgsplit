@@ -43,7 +43,7 @@ function write_read_server( key, value, callbackFunction ) {
 
 function encrypt ( plaintext ) {
     cryptographic_key   = generate_cryptographic_key( plaintext.length );
-    ciphertext          = de_en_crypt( plaintext, cryptographic_key );
+    var ciphertext          = de_en_crypt( plaintext, cryptographic_key );
     return ciphertext ;
 }
 
@@ -57,7 +57,7 @@ function make_linktobob ( storage_key ) {
 function decrypt( ciphertext ) {
     var ciphertext_base64   = window.atob( ciphertext  );
     var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
-    decryptedmsg            = de_en_crypt( ciphertext_base64 , cryptkey ) ;
+    var decryptedmsg            = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
     const input_message = document.getElementById('message');
     if ( decryptedmsg.length > 0 ) {
@@ -71,7 +71,7 @@ function decrypt( ciphertext ) {
 
 // user input 
 function create_plaintext2ciphertext() {
-    plaintext               = document.getElementById("plaintext").value;
+    var plaintext           = document.getElementById("plaintext").value;
     var ciphertext          = encrypt( plaintext ) ;
     var ciphertext_base64   = window.btoa( ciphertext );
 
