@@ -54,7 +54,7 @@ function make_linktobob ( storage_key ) {
 function decrypt( ciphertext ) {
     var ciphertext_base64   = window.atob( ciphertext  );
     var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
-    var decryptedmsg            = de_en_crypt( ciphertext_base64 , cryptkey ) ;
+    var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
     const input_message = document.getElementById('message');
     if ( decryptedmsg.length > 0 ) {
