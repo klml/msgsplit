@@ -74,8 +74,8 @@ function create_plaintext2ciphertext() {
 
     var formData = new FormData();
     formData.append( 'encrypted', ciphertext_base64 );
-
     write_read_server( formData, make_linktobob );
+
     document.getElementById('sendmessage').style.opacity = 1.0;
     document.getElementById('setmessage').style.opacity = 0.8;
 }
@@ -85,6 +85,7 @@ function get_ciphertext2plaintext() {
     var formData = new FormData();
     formData.append( 'key', search );
     write_read_server( formData , decrypt );
+
     document.getElementById('getmessagebtn').disabled = true ;
 }
 
