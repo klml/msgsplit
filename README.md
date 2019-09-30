@@ -25,6 +25,7 @@ As encryption method, msgsplit uses [one-time-pad](https://en.wikipedia.org/wiki
 Bob gets the link and and can get the cipher from the server and decrypt the message in his browser, only one time.
 The cipher gets deleted from the server.
 
+## security
 
 Of course this procedure is not safe, there are several __security concerns__: 
 
@@ -33,7 +34,7 @@ Of course this procedure is not safe, there are several __security concerns__:
   * the stored cipher is useless, but you could manipulate the javascript.
   * if ciphers don't get deleted and the offender got your mail, your message is disclosed   
 * The browser generates the key for the message, if your browsers [Math.random](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math/math.random) is compromised, everything is worthless.
-
+* Only the transmitted message is encrypted. The receiver is not authenticated. The first one who receives the link, has the message.
 
 
 ## better 
