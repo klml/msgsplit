@@ -19,7 +19,7 @@ h1 {
 h1:first-letter {
     color: #ffcc00;
 }
-a:active,:hover,:link,:visited {
+a {
     text-decoration: none;
     color: #333333;
 }
