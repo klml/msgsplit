@@ -3,6 +3,14 @@ body {
     text-decoration: none;
     background-color: #fff;
 }
+.panel {
+    max-width: 1024px;
+    margin: auto;
+}
+
+#getmessage {
+    display: none;
+}
 
 h1 {
     text-transform: uppercase;
@@ -11,17 +19,10 @@ h1 {
 h1:first-letter {
     color: #ffcc00;
 }
-
 a:active,:hover,:link,:visited {
     text-decoration: none;
     color: #333333;
 }
-
-.panel {
-    max-width: 1024px;
-    margin: auto;
-}
-
 #setmessage, #sendmessage, #getmessage {
     border: 1px solid lightgrey;
     border-radius: 5px;
@@ -29,15 +30,10 @@ a:active,:hover,:link,:visited {
     padding: 10px;
     margin-top: 10px;
 }
-#getmessage {
-    display: none;
-}
-
 .input, #plaintext, #linktobob, #message {
     width: 98%;
     margin: 10px auto;
 }
-
 .button, #submitcipherserver, #getmessagebtn {
     border-radius: 3px;
     margin: 10px;
