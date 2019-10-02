@@ -11,25 +11,25 @@
     <div class="panel">
     <h1><a href="./" accesskey="1" >message split</a></h1>
 
-    <div id="setmessage">
-        <label for="message">your message:</label>
-        <br>
-        <input type="text" id="plaintext" maxlength=254 autofocus/>
-        <button id="submitcipherserver" onclick="create_plaintext2ciphertext()" accesskey="a" >encrypt and submit cipher to server</button>
-    </div>
+        <div id="setmessage">
+            <label for="message">your message:</label>
+            <br>
+            <input type="text" id="plaintext" maxlength=254 autofocus/>
+            <button id="submitcipherserver" onclick="create_plaintext2ciphertext()" accesskey="a" >encrypt and submit cipher to server</button>
+        </div>
 
-    <div id="sendmessage">
-        <label for="linktobob">send this link:</label>
-        <br>
-        <input type="text" id="linktobob"/>
-        <p>Do not check this link, the message can only get read one time.</p>
-    </div>
+        <div id="sendmessage">
+            <label for="linktobob">send this link:</label>
+            <br>
+            <input type="text" id="linktobob"/>
+            <p>Do not check this link, the message can only get read one time.</p>
+        </div>
 
-    <div id="getmessage">
-        <p>Save this message for sure! You cant get it a second time.</p>
-        <input type="text" id="message" />
-        <button onclick="get_ciphertext2plaintext()" id="getmessagebtn" accesskey="v" >get message</button>
-    </div>
+        <div id="getmessage">
+            <p>Save this message for sure! You cant get it a second time.</p>
+            <input type="text" id="message" />
+            <button onclick="get_ciphertext2plaintext()" id="getmessagebtn" accesskey="v" >get message</button>
+        </div>
     
     <p><a href="https://github.com/klml/msgsplit">github.com/klml/msgsplit</a></p>
 </body>
