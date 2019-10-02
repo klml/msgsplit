@@ -19,7 +19,7 @@ function de_en_crypt ( message, cryptographic_key ) {
 }
 
 
-// send message or messageKey and get back cipherfile or encrypted message
+// send ciphertext or storage_key and get back cipherfile or encrypted message
 function write_read_server( formData, callbackFunction ) {
 
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
