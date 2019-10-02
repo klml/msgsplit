@@ -11,10 +11,6 @@ a:active,:hover,:link,:visited {
     color: #333333;
 }
 
-.div {
-    background-color: #000;
-}
-
 .panel {
     font: normal 18px arial;
     text-decoration: none;
