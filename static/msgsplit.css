@@ -34,7 +34,7 @@ a:active,:hover,:link,:visited {
 }
 
 .input, #plaintext, #linktobob, #message {
-    width: 980px;
+    width: 98%;
     margin: 10px auto;
 }
 
