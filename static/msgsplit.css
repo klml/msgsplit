@@ -22,10 +22,6 @@ a:active,:hover,:link,:visited {
     margin: auto;
 }
 
-.label,#message {
-    text-transform: uppercase;
-}
-
 #setmessage, #sendmessage, #getmessage {
     border: 1px solid lightgrey;
     border-radius: 5px;
