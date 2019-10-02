@@ -23,7 +23,7 @@ a:active,:hover,:link,:visited {
     text-decoration: none;
     color: #333333;
 }
-#setmessage, #sendmessage, #getmessage {
+.panel > div {
     border: 1px solid lightgrey;
     border-radius: 5px;
     background-color: rgb(224,224,224,0.5);
