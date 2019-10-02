@@ -58,6 +58,7 @@ function make_linktobob ( storage_key ) {
 
 function decrypt( ciphertext ) {
     var ciphertext_base64   = window.atob( ciphertext  );
+    // remov ? from window.location.hash
     var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
     var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
@@ -86,9 +87,10 @@ function create_plaintext2ciphertext() {
 }
 
 function get_ciphertext2plaintext() {
-    var search = decodeURIComponent(window.location.search).substring(1)  ;
+    // remov ? from window.location.search
+    var storage_key = decodeURIComponent(window.location.search).substring(1)  ;
     var formData = new FormData();
-    formData.append( 'key', search );
+    formData.append( 'key', storage_key );
     write_read_server( formData , decrypt );
 
     document.getElementById('getmessagebtn').disabled = true ;
