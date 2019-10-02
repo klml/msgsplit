@@ -1,36 +1,51 @@
-body > .panel { 
-    font:normal 18px Arial, Helvetica;
-    color:#444;
-    background-color: #EEEEEE ;
-    margin: 0;
-    padding: 10px;
-    outline: none;
-    line-height:1.6;
+h1 {
+    text-transform: uppercase;
+    text-decoration: none;
 }
-input {
-    width: 98%;
-}
-.panel div {
-    padding: 10px;
-    color: #fff;
-    margin-bottom: 10px;
+h1:first-letter {
+    color: #ffcc00;
 }
 
-#sendmessage {
-    opacity:0.3
+a:active,:hover,:link,:visited {
+    text-decoration: none;
+    color: #333333;
+}
+
+.div {
+    background-color: #000;
+}
+
+.panel {
+    font: normal 18px arial;
+    text-decoration: none;
+    max-width: 1024px;
+    margin: auto;
+}
+
+.label,#message {
+    text-transform: uppercase;
+}
+
+#setmessage, #sendmessage, #getmessage {
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    background-color: rgb(224,224,224,0.5);
+    padding: 10px;
+    margin-top: 10px;
 }
 #getmessage {
-    display:none;
+    display: none;
 }
 
-#setmessage {
-    background-color: #363636;
-}
-#sendmessage{
-    background-color: #4d4d4d;
-}
-#getmessage {
-    background-color: #ABABAB;
+.input, #plaintext, #linktobob, #message {
+    width: 980px;
+    margin: 10px auto;
 }
 
-
+.button, #submitcipherserver, #getmessagebtn {
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #ffcc00; /#4CAF50/
+}
