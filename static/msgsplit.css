@@ -24,7 +24,7 @@ a {
 .panel > div {
     border: 1px solid lightgrey;
     border-radius: 5px;
-    background-color: rgb(224,224,224,0.5);
+    background-color: #eee;
     padding: 10px;
     margin-top: 10px;
 }
