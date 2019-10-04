@@ -15,11 +15,11 @@ h1 {
     text-transform: uppercase;
 }
 h1:first-letter {
-    color: #ffcc00;
+    color: #fc0;
 }
 a {
     text-decoration: none;
-    color: #333333;
+    color: #333;
 }
 .panel > div {
     border: 1px solid lightgrey;
@@ -37,5 +37,5 @@ button {
     margin: 10px 0;
     padding: 10px;
     border: none;
-    background-color: #ffcc00;
+    background-color: #fc0;
 }
