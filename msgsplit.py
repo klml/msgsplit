@@ -16,6 +16,10 @@ class index:
         return open(os.path.dirname(os.path.realpath(__file__)) + '/index.html', 'r')
 
 class writeread:
+    ## this is a wedged CRUD
+    ## Create a env (max 256)
+    ## Read AND Delete
+    ## no Update
     def POST(self):
         postparam       = web.input(_method='post')
         
@@ -31,7 +35,7 @@ class writeread:
             env_prefix_key = env_prefix + postparam['key']
             try:
                 cipher      = os.environ[ env_prefix_key ]
-                # overwrite env
+                # overwrite env to DELETE
                 os.environ[ env_prefix_key ] = ''
             except:
                 cipher      = ''
