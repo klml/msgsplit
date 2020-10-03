@@ -12,6 +12,7 @@ class index:
     # [webpy staticfiles](http://webpy.org/cookbook/staticfiles) demands the directory /static/, index.html should be on webroot
     # [index as static #3 ](https://github.com/klml/msgsplit/issues/3)
     def GET(self):
+        web.header('Content-Type', 'text/html')
         return open(os.path.dirname(os.path.realpath(__file__)) + '/index.html', 'r')
 
 class writeread:
