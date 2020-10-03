@@ -23,6 +23,8 @@ class writeread:
         
         if hasattr(postparam, 'encrypted'):
             key             = str( random.randrange(1000, 1000000000000, 1) )
+            if (len(postparam['encrypted']) > 256 ):
+                return 'encrypted too long'
             os.environ[ env_prefix + key ] = postparam['encrypted']
 
             return key
