@@ -36,6 +36,29 @@ Of course this procedure is not safe, there are several __security concerns__:
 * The browser generates the key for the message, if your browsers [Math.random](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math/math.random) is compromised, everything is worthless.
 * Only the transmitted message is encrypted. The receiver is not authenticated. The first one who receives the link, has the message.
 
+## demo
+
+Working demo, you can use it, but there is no safety guarantee!
+
+[msgsplit.klml.de](https://msgsplit.klml.de)
+
+hostet on [uberspace.de](https://uberspace.de) with [supervisord](https://manual.uberspace.de/daemons-supervisord.html) `msgsplit.py` as [web backend](https://manual.uberspace.de/web-backends.html), static files (index.html, css, js) as default apache and [access log is disabled](https://manual.uberspace.de/web-logs).
+
+```
+[msgsplit@erinome ~]$ cat ~/etc/services.d/msgsplit.ini 
+[program:msgsplit]
+command=python3 /home/msgsplit/msgsplit/msgsplit.py 
+autostart=yes
+autorestart=yes
+[msgsplit@erinome ~]$ supervisorctl status
+msgsplit                         RUNNING   pid 29057, uptime 0:25:35
+[msgsplit@erinome ~]$ uberspace web backend list
+/writeread http:8080 => OK, listening: PID 29057, python3 /home/msgsplit/msgsplit/msgsplit.py
+/ apache (default)
+
+[msgsplit@erinome ~]$ uberspace web log access status
+access log is disabled
+```
 
 ## better 
 
