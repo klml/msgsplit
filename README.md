@@ -36,6 +36,13 @@ Of course this procedure is not safe, there are several __security concerns__:
 * The browser generates the key for the message, if your browsers [Math.random](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Math/math.random) is compromised, everything is worthless.
 * Only the transmitted message is encrypted. The receiver is not authenticated. The first one who receives the link, has the message.
 
+## discalimer
+
+Only transmit messages that can get disclosed (inital passwords, etc )
+Do not use msgsplit for current used passwords.
+If the hyperlink gets stolen, this message is disclosed.
+
+
 ## demo
 
 Working demo, you can use it, but there is no safety guarantee!
