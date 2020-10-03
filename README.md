@@ -16,7 +16,7 @@ Workflow:
 * Bobs browser requests the _ciphertext_ with the _storage-key_ from server
   * server reads the _ciphertext_
   * server deletes the _ciphertext_
-  * now Server sends the _ciphertext_ to Bobs Browser
+  * now server sends the _ciphertext_ to Bobs Browser
 * Bob decrypts the the message with _ciphertext_ and the _cryptographic-key_
 
 As encryption method, msgsplit uses [one-time-pad](https://en.wikipedia.org/wiki/One-time_pad), its very secure and very easy to implement.
