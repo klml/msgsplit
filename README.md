@@ -43,6 +43,14 @@ There are better ways for real crypto:
 
 * [openpgp.org](https://www.openpgp.org)
 
+## install
+
+msgsplit uses [web.py](https://webpy.org/)
+
+```
+pip3 install -r requirements.txt
+python3 msgsplit.py
+```
 
 ## Similar
 
