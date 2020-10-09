@@ -26,9 +26,10 @@ class writeread:
         if hasattr(postparam, 'encrypted'):
             key             = str( random.randrange(1000, 1000000000000, 1) )
             if (len(postparam['encrypted']) > 256 ):
-                return 'encrypted too long'
-            os.environ[ env_prefix + key ] = postparam['encrypted']
+                web.ctx.status = '413 Payload Too Large'
+                return
 
+            os.environ[ env_prefix + key ] = postparam['encrypted']
             return key
 
         if hasattr(postparam, 'key'):
@@ -37,10 +38,10 @@ class writeread:
                 cipher      = os.environ[ env_prefix_key ]
                 # overwrite env to DELETE
                 os.environ[ env_prefix_key ] = ''
+                return cipher
             except:
-                cipher      = ''
-
-            return cipher
+                web.ctx.status = '404 Not Found'
+                return
 
 
 if __name__ == "__main__":

@@ -24,13 +24,16 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
 
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
         function(response) {
+            if (response.status == 404) {
+                callbackFunction('', cryptographic_key, response.status);
+            }
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
                 callbackFunction()
                 return;
             }
             response.text().then(function(response_data) {
-                callbackFunction(response_data, cryptographic_key);
+                callbackFunction(response_data, cryptographic_key, response.status);
             });
         }
     ).catch(function(err) {
@@ -47,28 +50,29 @@ function encrypt ( plaintext ) {
 }
 
 // output to html inputs
-function make_linktobob ( storage_key, cryptographic_key ) {
-    if (typeof storage_key !== 'undefined') {
+function make_linktobob ( storage_key, cryptographic_key, http_status ) {
+    if ( http_status == "200" ) {
         const linktobob     = document.getElementById('linktobob');
         linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
         linktobob.select();
     } else {
-        linktobob.value     = 'error'
+        linktobob.value     = 'server error: ' + http_status
     }
 }
 
-function decrypt( ciphertext ) {
+function decrypt( ciphertext, cryptographic_key, http_status ) {
     var ciphertext_base64   = window.atob( ciphertext  );
     // remov ? from window.location.hash
     var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
     var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
     const input_message = document.getElementById('message');
-    if ( decryptedmsg.length > 0 ) {
+
+    if ( http_status == "404" ) {
+        input_message.value = "no message here";
+    } else {
         input_message.value = decryptedmsg ;
         message.select();
-    } else {
-        input_message.value = "no message here";
     }
 }
 
