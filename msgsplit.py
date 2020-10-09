@@ -36,8 +36,11 @@ class writeread:
             env_prefix_key = env_prefix + postparam['key']
             try:
                 cipher      = os.environ[ env_prefix_key ]
-                # overwrite env to DELETE
+                # overwrite env
                 os.environ[ env_prefix_key ] = ''
+                # DELETE env
+                os.environ.pop( env_prefix_key )
+
                 return cipher
             except:
                 web.ctx.status = '404 Not Found'
