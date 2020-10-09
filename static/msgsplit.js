@@ -75,9 +75,9 @@ function decrypt( ciphertext ) {
 
 // user input 
 function create_plaintext2ciphertext() {
-    var plaintext           = document.getElementById("plaintext").value;
-    var [ciphertext, cryptographic_key]   = encrypt( plaintext ) ;
-    var ciphertext_base64   = window.btoa( ciphertext );
+    var plaintext                       = document.getElementById("plaintext").value;
+    var [ciphertext, cryptographic_key] = encrypt( plaintext ) ;
+    var ciphertext_base64               = window.btoa( ciphertext );
 
     var formData = new FormData();
     formData.append( 'encrypted', ciphertext_base64 );
