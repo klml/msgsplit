@@ -20,7 +20,7 @@ function de_en_crypt ( message, cryptographic_key ) {
 
 
 // send ciphertext or storage_key and get back cipherfile or encrypted message
-function write_read_server( callbackFunction, formData ) {
+function write_read_server( callbackFunction, formData , cryptographic_key ) {
 
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
         function(response) {
@@ -30,7 +30,7 @@ function write_read_server( callbackFunction, formData ) {
                 return;
             }
             response.text().then(function(response_data) {
-                callbackFunction(response_data);
+                callbackFunction(response_data, cryptographic_key);
             });
         }
     ).catch(function(err) {
@@ -40,13 +40,14 @@ function write_read_server( callbackFunction, formData ) {
 
 
 function encrypt ( plaintext ) {
-    cryptographic_key   = generate_cryptographic_key( plaintext.length );
+    var cryptographic_key   = generate_cryptographic_key( plaintext.length );
     var ciphertext          = de_en_crypt( plaintext, cryptographic_key );
-    return ciphertext ;
+
+    return [ciphertext, cryptographic_key];
 }
 
 // output to html inputs
-function make_linktobob ( storage_key ) {
+function make_linktobob ( storage_key, cryptographic_key ) {
     if (typeof storage_key !== 'undefined') {
         const linktobob     = document.getElementById('linktobob');
         linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
@@ -75,12 +76,12 @@ function decrypt( ciphertext ) {
 // user input 
 function create_plaintext2ciphertext() {
     var plaintext           = document.getElementById("plaintext").value;
-    var ciphertext          = encrypt( plaintext ) ;
+    var [ciphertext, cryptographic_key]   = encrypt( plaintext ) ;
     var ciphertext_base64   = window.btoa( ciphertext );
 
     var formData = new FormData();
     formData.append( 'encrypted', ciphertext_base64 );
-    write_read_server( make_linktobob, formData );
+    write_read_server( make_linktobob, formData, cryptographic_key );
 
     document.getElementById('sendmessage').style.opacity = 1.0;
     document.getElementById('setmessage').style.opacity = 0.8;
