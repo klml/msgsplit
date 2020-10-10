@@ -25,11 +25,11 @@ class writeread:
 
         ## stores _ciphertext_ on the server in a key-value storage
         if hasattr(postparam, 'ciphertext_base64'):
-            storage_key             = str( random.randrange(1000, 1000000000000, 1) )
             if (len(postparam['ciphertext_base64']) > 256 ):
                 web.ctx.status = '413 Payload Too Large'
                 return
 
+            storage_key             = str( random.randrange(1000, 1000000000000, 1) )
             os.environ[ env_prefix + storage_key ] = postparam['ciphertext_base64']
             return storage_key ## to Alice
 
