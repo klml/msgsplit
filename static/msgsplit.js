@@ -84,7 +84,7 @@ function create_plaintext2ciphertext() {
     var ciphertext_base64               = window.btoa( ciphertext );
 
     var formData = new FormData();
-    formData.append( 'encrypted', ciphertext_base64 );
+    formData.append( 'ciphertext_base64', ciphertext_base64 );
     write_read_server( make_linktobob, formData, cryptographic_key );
 
     document.getElementById('sendmessage').style.opacity = 1.0;
@@ -95,7 +95,7 @@ function get_ciphertext2plaintext() {
     // remov ? from window.location.search
     var storage_key = decodeURIComponent(window.location.search).substring(1)  ;
     var formData = new FormData();
-    formData.append( 'key', storage_key );
+    formData.append( 'storage_key', storage_key );
     write_read_server( decrypt, formData );
 
     document.getElementById('getmessagebtn').disabled = true ;

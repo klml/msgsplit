@@ -22,26 +22,29 @@ class writeread:
     ## no Update
     def POST(self):
         postparam       = web.input(_method='post')
-        
-        if hasattr(postparam, 'encrypted'):
-            key             = str( random.randrange(1000, 1000000000000, 1) )
-            if (len(postparam['encrypted']) > 256 ):
+
+        ## stores _ciphertext_ on the server in a key-value storage
+        if hasattr(postparam, 'ciphertext_base64'):
+            storage_key             = str( random.randrange(1000, 1000000000000, 1) )
+            if (len(postparam['ciphertext_base64']) > 256 ):
                 web.ctx.status = '413 Payload Too Large'
                 return
 
-            os.environ[ env_prefix + key ] = postparam['encrypted']
-            return key
+            os.environ[ env_prefix + storage_key ] = postparam['ciphertext_base64']
+            return storage_key ## to Alice
 
-        if hasattr(postparam, 'key'):
-            env_prefix_key = env_prefix + postparam['key']
+        ## server reads the _ciphertext_
+        if hasattr(postparam, 'storage_key'):
+            env_prefix_storage_key = env_prefix + postparam['storage_key']
             try:
-                cipher      = os.environ[ env_prefix_key ]
-                # overwrite env
-                os.environ[ env_prefix_key ] = ''
-                # DELETE env
-                os.environ.pop( env_prefix_key )
+                ## server reads the ciphertext
+                ciphertext  = os.environ[ env_prefix_storage_key ]
+                # overwrite env, just to be sure
+                os.environ[ env_prefix_storage_key ] = ''
+                # delete the _ciphertext_
+                os.environ.pop( env_prefix_storage_key )
 
-                return cipher
+                return ciphertext ## to Bobs Browser
             except:
                 web.ctx.status = '404 Not Found'
                 return
