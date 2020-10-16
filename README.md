@@ -37,7 +37,7 @@ Of course this procedure is not safe, there are several __security concerns__:
 * Only the transmitted message is encrypted. The receiver is not authenticated. The first one who receives the link, has the message.
 * brutforce all ciphertexts (`for i in {1..99999999999} ; do curl -s -X POST http://msg.exmple.net:8080/writeread --form "storage_key=$1" ; done ;`): a ciphertext is still useless without the cryptographic-key.
 
-## discalimer
+## disclaimer
 
 Only transmit messages that can get disclosed (inital passwords, etc )
 Do not use msgsplit for current used passwords.
