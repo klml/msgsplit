@@ -26,6 +26,7 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
         function(response) {
             if (response.status == 404) {
                 callbackFunction('', cryptographic_key, response.status);
+                return;
             }
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
