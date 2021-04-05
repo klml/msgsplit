@@ -92,6 +92,10 @@ pip3 install -r requirements.txt
 python3 msgsplit.py
 ```
 
+Alternative:
+Use plain image [klml/msgsplit](https://hub.docker.com/r/klml/msgsplit) or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
+
+
 ## Similar
 
 * windmemo.com was a service to send messages you [could real only once](https://www.sebastian-kraus.com/windmemo-nur-der-erste-kann-es-lesen/).
