@@ -63,7 +63,7 @@ function make_linktobob ( http_status, cryptographic_key , storage_key ) {
 
 function decrypt( http_status, cryptographic_key , ciphertext  ) {
     var ciphertext_base64   = window.atob( ciphertext  );
-    // remov ? from window.location.hash
+    // remove ? from window.location.hash
     var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
     var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
