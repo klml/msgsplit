@@ -60,9 +60,7 @@ function make_linktobob ( http_status, cryptographic_key , storage_key ) {
 function decrypt( http_status, cryptographic_key , ciphertext  ) {
     const input_message = document.getElementById('message');
 
-    if ( http_status == "404" ) {
-        input_message.value = "no message here";
-    } else {
+    if ( http_status == "200" ) {
         var ciphertext_base64   = window.atob( ciphertext  );
         // remove ? from window.location.hash
         var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
@@ -70,6 +68,8 @@ function decrypt( http_status, cryptographic_key , ciphertext  ) {
 
         input_message.value = decryptedmsg ;
         message.select();
+    } else {
+        input_message.value = "no message here";
     }
 }
 
