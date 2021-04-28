@@ -48,8 +48,9 @@ function encrypt ( plaintext ) {
 
 // output to html inputs
 function make_linktobob ( http_status, cryptographic_key , storage_key ) {
+    linktobob     = document.getElementById('linktobob');
+
     if ( http_status == "200" ) {
-        const linktobob     = document.getElementById('linktobob');
         linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
         linktobob.select();
     } else {
@@ -58,7 +59,7 @@ function make_linktobob ( http_status, cryptographic_key , storage_key ) {
 }
 
 function decrypt( http_status, cryptographic_key , ciphertext  ) {
-    const input_message = document.getElementById('message');
+    input_message = document.getElementById('message');
 
     if ( http_status == "200" ) {
         var ciphertext_base64   = window.atob( ciphertext  );
