@@ -98,4 +98,4 @@ Use plain image [klml/msgsplit](https://hub.docker.com/r/klml/msgsplit) or with 
 
 ## Similar
 
-* windmemo.com was a service to send messages you [could real only once](https://www.sebastian-kraus.com/windmemo-nur-der-erste-kann-es-lesen/).
+* windmemo.com was a service to send messages you [could read only once](https://www.sebastian-kraus.com/windmemo-nur-der-erste-kann-es-lesen/).
