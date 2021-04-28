@@ -53,7 +53,7 @@ function make_linktobob ( http_status, cryptographic_key , storage_key ) {
         linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
         linktobob.select();
     } else {
-        linktobob.value     = 'server error: ' + http_status
+        linktobob.value     = 'HTTP response status codes: ' + http_status
     }
 }
 
