@@ -25,7 +25,7 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
         function(response) {
             if (response.status == 404) {
-                callbackFunction(response.status, cryptographic_key);
+                callbackFunction(response.status);
                 return;
             }
             if (response.status !== 200) {
@@ -62,16 +62,16 @@ function make_linktobob ( http_status, cryptographic_key , storage_key ) {
 }
 
 function decrypt( http_status, cryptographic_key , ciphertext  ) {
-    var ciphertext_base64   = window.atob( ciphertext  );
-    // remove ? from window.location.hash
-    var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
-    var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
-
     const input_message = document.getElementById('message');
 
     if ( http_status == "404" ) {
         input_message.value = "no message here";
     } else {
+        var ciphertext_base64   = window.atob( ciphertext  );
+        // remove ? from window.location.hash
+        var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
+        var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
+
         input_message.value = decryptedmsg ;
         message.select();
     }
