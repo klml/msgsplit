@@ -30,7 +30,7 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
             }
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
-                callbackFunction()
+                callbackFunction('', '', response.status)
                 return;
             }
             response.text().then(function(response_data) {
