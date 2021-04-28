@@ -24,10 +24,6 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
 
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
         function(response) {
-            if (response.status == 404) {
-                callbackFunction(response.status);
-                return;
-            }
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
                 callbackFunction(response.status)
