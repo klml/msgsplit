@@ -68,7 +68,7 @@ function decrypt( http_status, cryptographic_key , ciphertext  ) {
         var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
         input_message.value = decryptedmsg ;
-        message.select();
+        input_message.select();
     } else {
         input_message.value = "no message here";
     }
