@@ -25,7 +25,7 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
         function(response) {
             if (response.status == 404) {
-                callbackFunction(response.status, '', cryptographic_key );
+                callbackFunction(response.status, cryptographic_key, '' );
                 return;
             }
             if (response.status !== 200) {
@@ -34,7 +34,7 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
                 return;
             }
             response.text().then(function(response_data) {
-                callbackFunction(response.status, response_data, cryptographic_key);
+                callbackFunction(response.status, cryptographic_key, response_data);
             });
         }
     ).catch(function(err) {
@@ -51,7 +51,7 @@ function encrypt ( plaintext ) {
 }
 
 // output to html inputs
-function make_linktobob ( http_status, storage_key, cryptographic_key ) {
+function make_linktobob ( http_status, cryptographic_key , storage_key ) {
     if ( http_status == "200" ) {
         const linktobob     = document.getElementById('linktobob');
         linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
@@ -61,7 +61,7 @@ function make_linktobob ( http_status, storage_key, cryptographic_key ) {
     }
 }
 
-function decrypt( http_status, ciphertext, cryptographic_key ) {
+function decrypt( http_status, cryptographic_key , ciphertext  ) {
     var ciphertext_base64   = window.atob( ciphertext  );
     // remov ? from window.location.hash
     var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
