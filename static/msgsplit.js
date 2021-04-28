@@ -9,7 +9,8 @@ function generate_cryptographic_key (messageLength) {
 
 // called by encrypt and decrypt
 function de_en_crypt ( message, cryptographic_key ) {
-    var encrypted = "";
+    var encrypted   = "";
+
     for(var i=0; i < message.length ; i++) {
         // XOR each character together and build cipher
         var code    = ((cryptographic_key.charCodeAt(i)-65) ^ (message.charCodeAt(i)-65)) + 65;
@@ -48,7 +49,7 @@ function encrypt ( plaintext ) {
 
 // output to html inputs
 function make_linktobob ( http_status, cryptographic_key , storage_key ) {
-    linktobob     = document.getElementById('linktobob');
+    linktobob               = document.getElementById('linktobob');
 
     if ( http_status == "200" ) {
         linktobob.value     = window.location.href + '?' + storage_key + '#'+ cryptographic_key ;
@@ -59,7 +60,7 @@ function make_linktobob ( http_status, cryptographic_key , storage_key ) {
 }
 
 function decrypt( http_status, cryptographic_key , ciphertext  ) {
-    input_message = document.getElementById('message');
+    input_message               = document.getElementById('message');
 
     if ( http_status == "200" ) {
         var ciphertext_base64   = window.atob( ciphertext  );
@@ -67,10 +68,10 @@ function decrypt( http_status, cryptographic_key , ciphertext  ) {
         var cryptkey            = decodeURIComponent(window.location.hash).substring(1) ;
         var decryptedmsg        = de_en_crypt( ciphertext_base64 , cryptkey ) ;
 
-        input_message.value = decryptedmsg ;
+        input_message.value     = decryptedmsg ;
         input_message.select();
     } else {
-        input_message.value = "no message here";
+        input_message.value     = "no message here";
     }
 }
 
@@ -86,7 +87,7 @@ function create_plaintext2ciphertext() {
     write_read_server( make_linktobob, formData, cryptographic_key );
 
     document.getElementById('sendmessage').style.opacity = 1.0;
-    document.getElementById('setmessage').style.opacity = 0.8;
+    document.getElementById('setmessage' ).style.opacity = 0.8;
 }
 
 function get_ciphertext2plaintext() {
@@ -102,8 +103,8 @@ function get_ciphertext2plaintext() {
 // on load with ?cipher#messagekey: show get message button
 window.onload = function() {
     if ( decodeURIComponent(window.location.search).substring(1).length > 1 ) {
-        document.getElementById('setmessage').style.display = 'none';
+        document.getElementById('setmessage' ).style.display = 'none';
         document.getElementById('sendmessage').style.display = 'none';
-        document.getElementById('getmessage').style.display = 'block';
+        document.getElementById('getmessage' ).style.display = 'block';
     }
 };
