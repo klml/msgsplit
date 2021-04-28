@@ -25,12 +25,12 @@ function write_read_server( callbackFunction, formData , cryptographic_key ) {
     fetch( 'writeread', { method: "POST", body: formData }  ).then(
         function(response) {
             if (response.status == 404) {
-                callbackFunction(response.status, cryptographic_key, '' );
+                callbackFunction(response.status, cryptographic_key);
                 return;
             }
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
-                callbackFunction(response.status , '', '')
+                callbackFunction(response.status)
                 return;
             }
             response.text().then(function(response_data) {
