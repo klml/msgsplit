@@ -71,7 +71,7 @@ function decrypt( http_status, cryptographic_key , ciphertext  ) {
         input_message.value     = decryptedmsg ;
         input_message.select();
     } else {
-        input_message.value     = "no message here";
+        input_message.value     = "no message here, request the message again from your sender";
     }
 }
 
