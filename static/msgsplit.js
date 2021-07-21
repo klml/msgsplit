@@ -21,9 +21,8 @@ function de_en_crypt ( message, cryptographic_key ) {
 
 
 // send ciphertext or storage_key and get back cipherfile or encrypted message
-function write_read_server( callbackFunction, formData , cryptographic_key ) {
-
-    fetch( 'writeread', { method: "POST", body: formData }  ).then(
+function write_read_server( write_read_server_path , callbackFunction, post_data , cryptographic_key ) {
+    fetch( write_read_server_path, { method: "POST", body: post_data }  ).then(
         function(response) {
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
@@ -82,20 +81,16 @@ function create_plaintext2ciphertext() {
     var [ciphertext, cryptographic_key] = encrypt( plaintext ) ;
     var ciphertext_base64               = window.btoa( ciphertext );
 
-    var formData = new FormData();
-    formData.append( 'ciphertext_base64', ciphertext_base64 );
-    write_read_server( make_linktobob, formData, cryptographic_key );
+    write_read_server( 'writeserver', make_linktobob, ciphertext_base64, cryptographic_key );
 
     document.getElementById('sendmessage').style.opacity = 1.0;
     document.getElementById('setmessage' ).style.opacity = 0.8;
 }
 
 function get_ciphertext2plaintext() {
-    // remov ? from window.location.search
+    // remove ? from window.location.search
     var storage_key = decodeURIComponent(window.location.search).substring(1)  ;
-    var formData = new FormData();
-    formData.append( 'storage_key', storage_key );
-    write_read_server( decrypt, formData );
+    write_read_server( 'readserver' , decrypt, storage_key );
 
     document.getElementById('getmessagebtn').disabled = true ;
 }

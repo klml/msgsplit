@@ -48,6 +48,22 @@ Do not use msgsplit for current used passwords.
 If the hyperlink gets stolen, this message is disclosed.
 
 
+## tech stack
+
+msgsplit uses no dependencies (like [web.py](https://webpy.org/) oder bottle)
+But plain [http.server](https://docs.python.org/3/library/http.server.html).
+
+
+run with:
+
+```
+python3 msgsplit.py
+```
+
+Alternative:
+Use plain image [klml/msgsplit](https://hub.docker.com/r/klml/msgsplit) or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
+
+
 ## demo
 
 Working demo, you can use it, but there is no safety guarantee!
@@ -77,18 +93,6 @@ access log is disabled
 There are better ways for real crypto:
 
 * [openpgp.org](https://www.openpgp.org)
-
-## install
-
-msgsplit uses [web.py](https://webpy.org/)
-
-```
-pip3 install -r requirements.txt
-python3 msgsplit.py
-```
-
-Alternative:
-Use plain image [klml/msgsplit](https://hub.docker.com/r/klml/msgsplit) or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
 
 
 ## Similar
