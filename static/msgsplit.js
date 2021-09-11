@@ -79,6 +79,8 @@ function decrypt( http_status, cryptographic_key , ciphertext ) {
 function create_plaintext2ciphertext() {
     var plaintext                       = document.getElementById("plaintext").value;
     var [ciphertext, cryptographic_key] = encrypt( plaintext ) ;
+
+    // send proper characters to server
     var ciphertext_base64               = window.btoa( ciphertext );
 
     write_read_server( 'writeserver', make_linktobob, ciphertext_base64, cryptographic_key );
