@@ -79,9 +79,10 @@ command=python3 /home/msgsplit/msgsplit/msgsplit.py
 autostart=yes
 autorestart=yes
 [msgsplit@erinome ~]$ supervisorctl status
-msgsplit                         RUNNING   pid 29057, uptime 0:25:35
+msgsplit                         RUNNING   pid 17680, uptime 1:33:05
 [msgsplit@erinome ~]$ uberspace web backend list
-/writeread http:8080 => OK, listening: PID 29057, python3 /home/msgsplit/msgsplit/msgsplit.py
+/writeserver http:8080 => OK, listening: PID 17680, python3 /home/msgsplit/msgsplit/msgsplit.py
+/readserver http:8080 => OK, listening: PID 17680, python3 /home/msgsplit/msgsplit/msgsplit.py
 / apache (default)
 
 [msgsplit@erinome ~]$ uberspace web log access status
