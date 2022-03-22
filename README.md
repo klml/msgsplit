@@ -91,8 +91,8 @@ access log is disabled
 
 ## better 
 
-There are better ways for real crypto:
-
+There are better ways:
+* [privatebin.info](https://privatebin.info) is a minimalist, open source online pastebin where the server has zero knowledge of pasted data. But [requires](https://github.com/PrivateBin/PrivateBin/blob/master/INSTALL.md#minimal-requirements) a database.
 * [openpgp.org](https://www.openpgp.org)
 
 
