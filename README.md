@@ -8,7 +8,7 @@ message split allows you to send messages (passwords etc.) to another person wit
 
 * msgsplit encrypts the message with a [one-time-pad](https://en.wikipedia.org/wiki/One-time_pad) in Alices browser into a _ciphertext_ and _cryptographic-key_
 * sends the _ciphertext_ to the server
-  * the server stores the _ciphertext_ in a key-value storage
+  * the server stores the _ciphertext_ in a prefixed environment variable.
   * returns the _storage-key_ to Alice
 * Alices browser creates a hyperlink with the _storage-key_ as URL-query (''?'') and the _cryptographic-key_ as URL-Fragment (''#'')
 * Alices sends this link via email or messenger to Bob
