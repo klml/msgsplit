@@ -48,16 +48,16 @@ Do not use msgsplit for current used passwords.
 If the hyperlink gets stolen, this message is disclosed.
 
 
-## tech stack
+## install
 
-msgsplit uses no dependencies (like [web.py](https://webpy.org/) oder bottle)
-But plain [http.server](https://docs.python.org/3/library/http.server.html).
-
-
-run with:
-
+Build
 ```
-python3 msgsplit.py
+go build ./msgsplit.go
+```
+
+Run
+```
+./msgsplit.go
 ```
 
 Alternative:
