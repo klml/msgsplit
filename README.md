@@ -70,7 +70,7 @@ Working demo, you can use it, but there is no safety guarantee!
 
 [msgsplit.klml.de](https://msgsplit.klml.de)
 
-Hostet on [uberspace.de](https://uberspace.de) with [supervisord](https://manual.uberspace.de/daemons-supervisord.html) `msgsplit.py` as [web backend](https://manual.uberspace.de/web-backends.html), static files (index.html, css, js) as default apache and [access log is disabled](https://manual.uberspace.de/web-logs).
+Hostet on [uberspace.de](https://uberspace.de) with [supervisord](https://manual.uberspace.de/daemons-supervisord.html) as [web backend](https://manual.uberspace.de/web-backends.html), static files (index.html, css, js) as default apache and [access log is disabled](https://manual.uberspace.de/web-logs).
 
 ```
 
