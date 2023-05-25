@@ -28,6 +28,11 @@ func main() {
     // no Update
 
     http.HandleFunc("/writeread", func(w http.ResponseWriter, r *http.Request) {
+        if r.Method != "POST" {
+            w.Header().Set("Allow", "POST")
+            http.Error(w, "Method Not Allowed", 405)
+            return
+        }
         // prefix ENV prevent reading system ENVs
         storage_key := "msgsplit_"
         r.ParseForm()
