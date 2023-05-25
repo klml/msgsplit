@@ -1,4 +1,4 @@
-FROM docker.io/library/golang:1.19-alpine AS builder-env
+FROM docker.io/library/golang:1.20-alpine AS builder-env
 WORKDIR /app
 COPY ./ /app
 RUN CGO_ENABLED=0 go build ./msgsplit.go
