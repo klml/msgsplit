@@ -53,7 +53,7 @@ func main() {
             storage_key += key[0]                               // example: msgsplit_6334824724549167320
             cipher, cipher_exists := os.LookupEnv(storage_key)
             if !cipher_exists {  
-                http.Error(w, "Not Found", 404)
+                http.Error(w, "Gone", 410)
             }
             // delete cipher
             os.Unsetenv(storage_key)                            // example: msgsplit_6334824724549167320
