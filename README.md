@@ -61,7 +61,7 @@ Run
 ```
 
 Alternative:
-Use plain image [klml/msgsplit](https://hub.docker.com/r/klml/msgsplit) or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
+Use plain image `ghcr.io/klml/msgsplit:main` or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
 
 
 ## demo
