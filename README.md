@@ -52,7 +52,7 @@ If the hyperlink gets stolen, this message is disclosed.
 
 Build
 ```
-go build ./msgsplit.go
+CGO_ENABLED=0 go build ./msgsplit.go
 ```
 
 Run
