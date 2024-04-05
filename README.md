@@ -50,11 +50,14 @@ If the hyperlink gets stolen, this message is disclosed.
 
 ## Build
 
+golang>1.20 is required
+
 ```
 CGO_ENABLED=0 go build ./msgsplit.go
 ```
 
 ## Run
+
 ```
 ./msgsplit.go
 ```

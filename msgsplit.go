@@ -4,22 +4,9 @@ import (
     "fmt"
     "os"
     "net/http"
-    crypto_rand "crypto/rand"
-    "encoding/binary"
     math_rand "math/rand"
 )
 
-// seed rand
-// wanted to use https://github.com/google/uuid , but modules are a bigger threat 
-// from https://stackoverflow.com/a/54491783/2248997
-func init() {
-    var b [8]byte
-    _, err := crypto_rand.Read(b[:])
-    if err != nil {
-        panic("cannot seed math/rand package with cryptographically secure random number generator")
-    }
-    math_rand.Seed(int64(binary.LittleEndian.Uint64(b[:])))
-}
 
 func main() {
     // this is a wedged CRUD
