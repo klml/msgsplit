@@ -48,14 +48,13 @@ Do not use msgsplit for current used passwords.
 If the hyperlink gets stolen, this message is disclosed.
 
 
-## install
+## Build
 
-Build
 ```
 CGO_ENABLED=0 go build ./msgsplit.go
 ```
 
-Run
+## Run
 ```
 ./msgsplit.go
 ```
