@@ -10,7 +10,7 @@ import (
 )
 
 // seed rand
-// wanted to use https://github.com/google/uuid , but modules are a bigger thread 
+// wanted to use https://github.com/google/uuid , but modules are a bigger threat 
 // from https://stackoverflow.com/a/54491783/2248997
 func init() {
     var b [8]byte
