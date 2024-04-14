@@ -9,9 +9,9 @@ import (
 
 
 func main() {
-    // this is a wedged CRUD
-    // Create a env (max 256)
-    // Read AND Delete
+    // this is a downscaled CRUD service
+    // Create a environment variable (max 256) for cipher
+    // Read AND Delete cipher
     // no Update
 
     http.HandleFunc("/writeread", func(w http.ResponseWriter, r *http.Request) {
@@ -20,7 +20,7 @@ func main() {
             http.Error(w, "Method Not Allowed", 405)
             return
         }
-        // prefix ENV prevent reading system ENVs
+        // prefix environment variable, to prevent reading all system environment variables
         storage_key := "msgsplit_"
         r.ParseForm()
 
@@ -30,6 +30,7 @@ func main() {
             if len(cipher[0]) > 256 {  
                 http.Error(w, "Payload Too Large", 413)
             }
+            // create unique identifier name for environment variable
             storage_rand := fmt.Sprintf("%d", math_rand.Int())  // example:          6334824724549167320
             storage_key  += storage_rand                        // example: msgsplit_6334824724549167320
             os.Setenv(storage_key, cipher[0])
