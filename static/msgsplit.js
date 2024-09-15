@@ -29,8 +29,12 @@ function de_en_crypt ( message, cryptographic_key ) {
 
 
 // send ciphertext or storage_key and get back cipherfile or encrypted message
-function write_read_server( write_read_server_path , callbackFunction, post_data , cryptographic_key ) {
-    fetch( write_read_server_path, { method: "POST", body: post_data }  ).then(
+function write_read_server( cipher_key , callbackFunction, post_data , cryptographic_key ) {
+
+    var data = new URLSearchParams();
+    data.append(cipher_key, post_data);
+
+    fetch( "writeread", { method: "POST", body: data }  ).then(
         function(response) {
             if (response.status !== 200) {
                 console.log('ERROR Status Code: ' + response.status);
@@ -91,7 +95,7 @@ function create_plaintext2ciphertext() {
     // send proper characters to server
     var ciphertext_base64               = window.btoa( ciphertext );
 
-    write_read_server( 'writeserver', make_linktobob, ciphertext_base64, cryptographic_key );
+    write_read_server( 'cipher', make_linktobob, ciphertext_base64, cryptographic_key );
 
     document.getElementById('sendmessage').style.opacity = 1.0;
     document.getElementById('setmessage' ).style.opacity = 0.8;
@@ -100,7 +104,7 @@ function create_plaintext2ciphertext() {
 function get_ciphertext2plaintext() {
     // remove ? from window.location.search
     var storage_key = decodeURIComponent(window.location.search).substring(1)  ;
-    write_read_server( 'readserver' , decrypt, storage_key );
+    write_read_server( 'key', decrypt, storage_key );
 
     document.getElementById('getmessagebtn').disabled = true ;
 }

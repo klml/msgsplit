@@ -8,7 +8,7 @@ message split allows you to send messages (passwords etc.) to another person wit
 
 * msgsplit encrypts the message with a [one-time-pad](https://en.wikipedia.org/wiki/One-time_pad) in Alices browser into a _ciphertext_ and _cryptographic-key_
 * sends the _ciphertext_ to the server
-  * the server stores the _ciphertext_ in a key-value storage
+  * the server stores the _ciphertext_ in a prefixed environment variable.
   * returns the _storage-key_ to Alice
 * Alices browser creates a hyperlink with the _storage-key_ as URL-query (''?'') and the _cryptographic-key_ as URL-Fragment (''#'')
 * Alices sends this link via email or messenger to Bob
@@ -30,7 +30,7 @@ There are several __security concerns__:
   * if ciphers don't get deleted and the offender gets your mail, your message is disclosed   
 * The browser [generates](https://github.com/klml/msgsplit/blob/master/static/msgsplit.js#L6) the key for the message, if your browsers [Crypto.getRandomValues()](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) is compromised, everything is worthless.
 * Only the transmitted message is encrypted. The receiver is not authenticated. The first one who receives the link, has the message.
-* brutforce all ciphertexts (`for i in {1..99999999999} ; do curl -s -X POST http://msg.exmple.net:8080/writeread --form "storage_key=$1" ; done ;`): a ciphertext is still useless without the cryptographic-key.
+* brutforce all ciphertexts (`for i in {1..99999999999} ; do curl -s -X POST http://msg.exmple.net:8080/writeread --form "key=$1" ; done ;`): a ciphertext is still useless without the cryptographic-key.
 
 ## persistent storage
 
@@ -48,20 +48,22 @@ Do not use msgsplit for current used passwords.
 If the hyperlink gets stolen, this message is disclosed.
 
 
-## tech stack
+## Build
 
-msgsplit uses no dependencies (like [web.py](https://webpy.org/) oder bottle)
-But plain [http.server](https://docs.python.org/3/library/http.server.html).
-
-
-run with:
+golang>1.20 is required
 
 ```
-python3 msgsplit.py
+CGO_ENABLED=0 go build ./msgsplit.go
+```
+
+## Run
+
+```
+./msgsplit.go
 ```
 
 Alternative:
-Use plain image [klml/msgsplit](https://hub.docker.com/r/klml/msgsplit) or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
+Use plain image `ghcr.io/klml/msgsplit:main` or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
 
 
 ## demo
@@ -70,18 +72,21 @@ Working demo, you can use it, but there is no safety guarantee!
 
 [msgsplit.klml.de](https://msgsplit.klml.de)
 
-Hostet on [uberspace.de](https://uberspace.de) with [supervisord](https://manual.uberspace.de/daemons-supervisord.html) `msgsplit.py` as [web backend](https://manual.uberspace.de/web-backends.html), static files (index.html, css, js) as default apache and [access log is disabled](https://manual.uberspace.de/web-logs).
+Hostet on [uberspace.de](https://uberspace.de) with [supervisord](https://manual.uberspace.de/daemons-supervisord.html) as [web backend](https://manual.uberspace.de/web-backends.html), static files (index.html, css, js) as default apache and [access log is disabled](https://manual.uberspace.de/web-logs).
 
 ```
+
 [msgsplit@erinome ~]$ cat ~/etc/services.d/msgsplit.ini 
 [program:msgsplit]
-command=python3 /home/msgsplit/msgsplit/msgsplit.py 
+command=/home/msgsplit/msgsplit/msgsplit
 autostart=yes
 autorestart=yes
+# `startsecs` is set by Uberspace monitoring team, to prevent a broken service from looping
+startsecs=30
 [msgsplit@erinome ~]$ supervisorctl status
-msgsplit                         RUNNING   pid 29057, uptime 0:25:35
+msgsplit                         RUNNING   pid 7138, uptime 0:09:34
 [msgsplit@erinome ~]$ uberspace web backend list
-/writeread http:8080 => OK, listening: PID 29057, python3 /home/msgsplit/msgsplit/msgsplit.py
+/writeread http:8080 => OK, listening: PID 7138, /home/msgsplit/msgsplit/msgsplit
 / apache (default)
 
 [msgsplit@erinome ~]$ uberspace web log access status
@@ -90,9 +95,13 @@ access log is disabled
 
 ## better 
 
-There are better ways for real crypto:
+There are better ways:
 
-* [openpgp.org](https://www.openpgp.org)
+* [ots.private.coffee](https://ots.private.coffee/) uses also a hash parameter and an expiration date.
+* [horuspass.com/send](https://horuspass.com/send) uses also a hash parameter, an expiration date, but depends on `workers.cloudflare.com`.
+* [pwpush.com](https://pwpush.com/) Passwords automatically expire after a certain number of views and/or time has passed. Track who, what and when. But more complex.
+* [privatebin.info](https://privatebin.info) is a minimalist, open source online pastebin where the server has zero knowledge of pasted data. But [requires](https://github.com/PrivateBin/PrivateBin/blob/master/INSTALL.md#minimal-requirements) a database.
+* and always [openpgp.org](https://www.openpgp.org)
 
 
 ## Similar
