@@ -1,8 +1,16 @@
 // https://github.com/ikcede/JS-One-Time-Pad/blob/master/onetimepad.js
 function generate_cryptographic_key (messageLength) {
     var cryptographic_key = "";
+    var byteArray = new Uint8Array(1);
     for(var i=0; i < messageLength ;i++) {
-        cryptographic_key = cryptographic_key.concat(String.fromCharCode(Math.floor(Math.random()*26) + 65));
+        window.crypto.getRandomValues(byteArray);
+
+        //     move   range start  from 0   to 65, to start at ASCII "A"
+        // and reduce range length from 256 to 26, to end   at ASCII "Z"
+        // 256 / 26 = 9.846153846
+        cryptographic_key_range = 65 + Math.floor( byteArray / 9.846153846 )
+        cryptographic_key = cryptographic_key.concat(String.fromCharCode(cryptographic_key_range));
+
     }
     return cryptographic_key;
 }
