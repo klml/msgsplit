@@ -97,7 +97,8 @@ access log is disabled
 
 There are better ways:
 
-* [horuspass.com/send](https://horuspass.com/send) uses also a hash parameter, but depends on `workers.cloudflare.com`.
+* [ots.private.coffee](https://ots.private.coffee/) uses also a hash parameter and an expiration date.
+* [horuspass.com/send](https://horuspass.com/send) uses also a hash parameter, an expiration date, but depends on `workers.cloudflare.com`.
 * [pwpush.com](https://pwpush.com/) Passwords automatically expire after a certain number of views and/or time has passed. Track who, what and when. But more complex.
 * [privatebin.info](https://privatebin.info) is a minimalist, open source online pastebin where the server has zero knowledge of pasted data. But [requires](https://github.com/PrivateBin/PrivateBin/blob/master/INSTALL.md#minimal-requirements) a database.
 * and always [openpgp.org](https://www.openpgp.org)
