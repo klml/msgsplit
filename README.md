@@ -1,6 +1,6 @@
 # message split
 
-This is _experimental_.
+This is _deprecated_ better use https://github.com/jhaals/yopass
 
 message split allows you to send messages (passwords etc.) to another person without having the message decrypted on the server or in the email.
 
