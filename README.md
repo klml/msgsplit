@@ -66,33 +66,6 @@ Alternative:
 Use plain image `ghcr.io/klml/msgsplit:main` or with [msgsplit-kubernetes](https://github.com/klml/msgsplit-kubernetes).
 
 
-## demo
-
-Working demo, you can use it, but there is no safety guarantee!
-
-[msgsplit.klml.de](https://msgsplit.klml.de)
-
-Hostet on [uberspace.de](https://uberspace.de) with [supervisord](https://manual.uberspace.de/daemons-supervisord.html) as [web backend](https://manual.uberspace.de/web-backends.html), static files (index.html, css, js) as default apache and [access log is disabled](https://manual.uberspace.de/web-logs).
-
-```
-
-[msgsplit@erinome ~]$ cat ~/etc/services.d/msgsplit.ini 
-[program:msgsplit]
-command=/home/msgsplit/msgsplit/msgsplit
-autostart=yes
-autorestart=yes
-# `startsecs` is set by Uberspace monitoring team, to prevent a broken service from looping
-startsecs=30
-[msgsplit@erinome ~]$ supervisorctl status
-msgsplit                         RUNNING   pid 7138, uptime 0:09:34
-[msgsplit@erinome ~]$ uberspace web backend list
-/writeread http:8080 => OK, listening: PID 7138, /home/msgsplit/msgsplit/msgsplit
-/ apache (default)
-
-[msgsplit@erinome ~]$ uberspace web log access status
-access log is disabled
-```
-
 ## better 
 
 There are better ways:
